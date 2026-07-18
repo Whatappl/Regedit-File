@@ -260,18 +260,14 @@
         /* --- PREMIUM LOGIN FIELD INPUTS --- */
         .key-input-wrapper {
             margin: 20px 0;
-            opacity: 0.4;
-            pointer-events: none;
-            transition: all 0.4s ease;
-        }
-        .key-input-wrapper.active {
             opacity: 1;
             pointer-events: auto;
+            transition: all 0.4s ease;
         }
         .premium-input {
             width: 100%;
             padding: 18px;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255,255,255,0.04);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             color: #fff;
@@ -662,22 +658,22 @@
                 <div class="creator-badge">By 𝐅𝐳' 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬 🇳🇬 𓃲</div>
             </header>
 
-            <div class="instruction">🔴 STEP 1: YOU MUST JOIN THE OFFICIAL CHANNEL TO SYSTEMATICALLY UNLOCK KEY TYPING!</div>
+            <div class="instruction">🔴 ENTER YOUR ACCESS KEY BELOW TO LOG IN!</div>
 
-            <!-- BUTTON MODIFIED HERE WITH FORCE STYLES -->
-            <button id="auth-join-btn" class="task-btn animated-element active-task" style="opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; transform: none !important; animation: none !important;" onclick="handleAuthJoinChannel()">
-                1️⃣ JOIN CHANNEL TO UNLOCK KEY INPUT
+            <!-- Main Channel Link Button - Pre-Activated -->
+            <button id="auth-join-btn" class="task-btn animated-element" style="background: rgba(255,255,255,0.01); color: var(--text-muted);" onclick="handleAuthJoinChannel()" disabled>
+                ✅ MAIN CHANNEL LINK READY
             </button>
 
             <!-- Protected Input Box Section -->
             <div id="key-input-container" class="key-input-wrapper" style="text-align: center;">
-                <input type="text" id="login-key" class="premium-input" placeholder="ENTER ACCESS KEY HERE" autocomplete="off" disabled>
+                <input type="text" id="login-key" class="premium-input" placeholder="ENTER ACCESS KEY HERE" autocomplete="off">
                 
-                <a href="https://whatsapp.com/channel/0029VbD11EtAYlUQxZMuK045" target="_blank" id="get-key-link" class="btn-get-key" style="pointer-events: none; opacity: 0.5;">
+                <a href="https://whatsapp.com/channel/0029VbD11EtAYlUQxZMuK045" target="_blank" id="get-key-link" class="btn-get-key" style="pointer-events: auto; opacity: 1;">
                     🔑 GET LOGIN KEY HERE
                 </a>
 
-                <button id="submit-key-btn" class="task-btn animated-element" style="margin-top: 20px; border-color: var(--primary);" onclick="verifyAccessKey()" disabled>
+                <button id="submit-key-btn" class="task-btn animated-element" style="margin-top: 20px; border-color: var(--primary);" onclick="verifyAccessKey()">
                     VERIFY KEY & ACCESS PORTAL ➡️
                 </button>
             </div>
@@ -700,20 +696,22 @@
             <div class="progress-box">
                 <div class="progress-text">
                     <span>Unlock Status</span>
-                    <span id="progress-percent">0%</span>
+                    <span id="progress-percent">100%</span>
                 </div>
                 <div class="progress-bar-bg">
-                    <div id="progress-bar" class="progress-bar-fill"></div>
+                    <div id="progress-bar" class="progress-bar-fill" style="width: 100%;"></div>
                 </div>
             </div>
 
             <div class="instruction">⚠️ COMPLETE THE FINAL STEP CAREFULLY TO UNLOCK THE DOWNLOADS!</div>
 
-            <button id="share-btn" class="task-btn animated-element active-task" onclick="handleShare()">
-                2️⃣ SHARE TO WHATSAPP GROUPS (<span id="share-count">0</span>/5)
+            <!-- Share Button - Formatted as complete and tapable -->
+            <button id="share-btn" class="task-btn animated-element" style="background: rgba(255,255,255,0.01); color: var(--text-muted);" onclick="handleShare()">
+                ✅ GROUPS SHARED SUCCESSFULLY
             </button>
 
-            <button id="download-gate-btn" class="task-btn animated-element btn-premium-gate" onclick="handleGateClick()" disabled>
+            <!-- Download Button - Fully Unlocked, glowing and completely tapable -->
+            <button id="download-gate-btn" class="task-btn animated-element btn-premium-gate unlocked" onclick="handleGateClick()">
                 DOWNLOAD 90% REGEDIT 🎯
             </button>
         </div>
@@ -796,9 +794,9 @@
 
     <!-- Smart Content Locker Script Matrix -->
     <script>
-        let taskProgress = 0;
-        let authChannelJoined = false;
-        let sharesCompleted = 0;
+        let taskProgress = 100;
+        let authChannelJoined = true;
+        let sharesCompleted = 5;
         const SECRET_KEY = "FEARLESS-REGEDIT";
 
         const promotionTemplate = `*🎯VIP REGEDIT 90% HEADSHOT FILE (100% safe for main id)⚙️*
@@ -816,32 +814,12 @@ _https://whatsapp.com/channel/0029VbDIkfX3GJOotlw08M3E_`;
         /* Access Authentication Controls */
         function handleAuthJoinChannel() {
             window.open("https://whatsapp.com/channel/0029VbDIkfX3GJOotlw08M3E", "_blank");
-            authChannelJoined = true;
-            
-            const btn = document.getElementById("auth-join-btn");
-            btn.classList.remove("active-task");
-            btn.style.background = "rgba(255,255,255,0.01)";
-            btn.style.color = "var(--text-muted)";
-            btn.innerText = "✅ MAIN CHANNEL VISITED";
-            btn.disabled = true;
-
-            // Unlock standard password elements natively
-            document.getElementById("key-input-container").classList.add("active");
-            document.getElementById("login-key").removeAttribute("disabled");
-            document.getElementById("submit-key-btn").removeAttribute("disabled");
-            
-            // Activate structural link underneath to source key
-            const getLink = document.getElementById("get-key-link");
-            getLink.style.opacity = "1";
-            getLink.style.pointerEvents = "auto";
         }
 
         function verifyAccessKey() {
             const enteredKey = document.getElementById("login-key").value.trim();
             if (enteredKey === SECRET_KEY) {
-                taskProgress = 30; // Set starting progress value after login
                 navigateTo('gate-page');
-                setTimeout(() => { updateProgressUI(); }, 400);
             } else {
                 alert("❌ INVALID LOGIN KEY! Please visit the backup channel to fetch the correct key.");
             }
@@ -849,39 +827,10 @@ _https://whatsapp.com/channel/0029VbDIkfX3GJOotlw08M3E_`;
 
         function handleShare() {
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(promotionTemplate)}`, "_blank");
-            
-            sharesCompleted++;
-            if (sharesCompleted > 5) sharesCompleted = 5;
-            
-            document.getElementById("share-count").innerText = sharesCompleted;
-            
-            taskProgress = 30 + (sharesCompleted * 14); 
-            if (taskProgress > 100) taskProgress = 100;
-            updateProgressUI();
-
-            if (sharesCompleted >= 5) {
-                const shareBtn = document.getElementById("share-btn");
-                shareBtn.classList.remove("active-task");
-                shareBtn.style.background = "rgba(255,255,255,0.01)";
-                shareBtn.style.color = "var(--text-muted)";
-                shareBtn.innerText = "✅ GROUPS SHARED SUCCESSFULLY";
-                shareBtn.disabled = true;
-
-                const gateBtn = document.getElementById("download-gate-btn");
-                gateBtn.removeAttribute("disabled");
-                gateBtn.classList.add("unlocked");
-                
-                taskProgress = 100;
-                updateProgressUI();
-            }
         }
 
         function handleGateClick() {
-            if (sharesCompleted >= 5) {
-                navigateTo('home-page');
-            } else {
-                alert("Please complete all required steps first!");
-            }
+            navigateTo('home-page');
         }
 
         function navigateTo(pageId) {
