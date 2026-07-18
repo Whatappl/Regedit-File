@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFE VIP REGEDIT FILE - 𝐅𝐳' 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #030408;
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --text-main: #ffffff;
+            --text-muted: #7c8ba1;
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --neon-green: #00f576;
+            --neon-amber: #ffaa00;
+            --premium-gradient: linear-gradient(135deg, #ff4500, #ff0055);
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- IMMERSIVE DYNAMIC MOVING BACKGROUND GRID --- */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% -20%, rgba(99, 102, 241, 0.18) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(168, 85, 247, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 100% 50%, rgba(0, 245, 118, 0.03) 0%, transparent 35%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 30px 30px;
+            transform: rotate(15deg);
+            animation: grid-drift 24s linear infinite;
+        }
+
+        /* --- IMMERSIVE FULLSCREEN LOADING MATRIX --- */
+        #global-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #030408;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.6s;
+        }
+
+        .loader-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff 30%, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+
+        .spinner-box {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner-outer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top-color: var(--primary);
+            border-bottom-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        .spinner-inner {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            border: 2px solid transparent;
+            border-left-color: var(--neon-green);
+            border-right-color: #00e1ff;
+            border-radius: 50%;
+            animation: spin-reverse 0.9s linear infinite;
+        }
+
+        .loader-text {
+            margin-top: 25px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            font-weight: 700;
+            animation: text-blink 1.4s infinite;
+        }
+
+        /* --- MAIN CONTAINER MATRIX --- */
+        .container {
+            width: 92%;
+            max-width: 430px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page {
+            display: none;
+            opacity: 0;
+            transform: scale(0.96) translateY(20px);
+            transition: opacity 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* --- STAGGERED ELEMENT ENTRY ANIMATION --- */
+        .page.active .animated-element {
+            opacity: 0;
+            animation: element-slide-up 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .page.active .animated-element:nth-child(1) { animation-delay: 0.1s; }
+        .page.active .animated-element:nth-child(2) { animation-delay: 0.18s; }
+        .page.active .animated-element:nth-child(3) { animation-delay: 0.26s; }
+        .page.active .animated-element:nth-child(4) { animation-delay: 0.34s; }
+
+        /* --- AVATAR & HEADER SYSTEM --- */
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 16px;
+            animation: floating-avatar 4s ease-in-out infinite;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--neon-green));
+            animation: spin 6s linear infinite;
+            z-index: 1;
+        }
+
+        .profile-avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 3px solid var(--bg-color);
+        }
+
+        header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin: 0 0 6px 0;
+            background: linear-gradient(135deg, #ffffff 40%, #c6cdff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .creator-badge {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        .thanks-badge {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--neon-amber);
+            background: rgba(255, 170, 0, 0.06);
+            border: 1px solid rgba(255, 170, 0, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            box-shadow: 0 4px 20px rgba(255, 170, 0, 0.05);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .instruction {
+            text-align: center;
+            color: #ffa500;
+            font-size: 0.88rem;
+            margin-bottom: 24px;
+            font-weight: 700;
+            background: rgba(255, 165, 0, 0.05);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px dashed rgba(255, 165, 0, 0.2);
+        }
+
+        /* --- PREMIUM LOGIN FIELD INPUTS --- */
+        .key-input-wrapper {
+            margin: 20px 0;
+            opacity: 0.4;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+        .key-input-wrapper.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .premium-input {
+            width: 100%;
+            padding: 18px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 2px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .premium-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+            background: rgba(255,255,255,0.04);
+        }
+        .btn-get-key {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--neon-amber);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s;
+        }
+        .btn-get-key:hover {
+            transform: scale(1.03);
+            text-shadow: 0 0 10px rgba(255, 170, 0, 0.4);
+        }
+
+        /* --- INTERACTIVE CARD SYSTEM --- */
+        .progress-box, .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite linear;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .progress-bar-bg {
+            background: rgba(255, 255, 255, 0.03);
+            height: 8px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--neon-green));
+            background-size: 200% auto;
+            border-radius: 20px;
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            animation: gradient-move 2s linear infinite;
+        }
+
+        /* --- PREMIUM BUTTONS --- */
+        .task-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 14px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .task-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .task-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .task-btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            border-style: dashed;
+        }
+
+        /* Task Active States */
+        .active-task {
+            border-color: rgba(0, 245, 118, 0.3) !important;
+            background: rgba(0, 245, 118, 0.02) !important;
+            color: var(--neon-green) !important;
+            box-shadow: 0 0 20px rgba(0, 245, 118, 0.05) !important;
+            animation: pulse-border 1.8s infinite alternate !important;
+        }
+        #share-btn.active-task {
+            border-color: rgba(168, 85, 247, 0.4) !important;
+            background: rgba(168, 85, 247, 0.03) !important;
+            color: #c4b5fd !important;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.05) !important;
+        }
+
+        /* Locked / Unlocked Premium Gate Button Styles */
+        .btn-premium-gate {
+            background: #101114;
+            border: 1px solid rgba(255, 69, 0, 0.15);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.25);
+            box-shadow: none;
+            animation: none;
+        }
+
+        .btn-premium-gate.unlocked {
+            background: var(--premium-gradient) !important;
+            background-size: 200% auto !important;
+            border: none !important;
+            color: #ffffff !important;
+            box-shadow: 0 6px 25px rgba(255, 0, 85, 0.45) !important;
+            cursor: pointer !important;
+            animation: gradient-move 3s ease infinite, gate-pulse 1.5s infinite alternate !important;
+        }
+        .btn-premium-gate.unlocked:hover {
+            background-position: right center !important;
+            box-shadow: 0 10px 35px rgba(255, 0, 85, 0.65) !important;
+            transform: translateY(-4px) scale(1.02) !important;
+        }
+
+        /* --- DOWNLOAD PAGES CONTROLS --- */
+        .card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+
+        .badge-grid {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .v-badge {
+            font-size: 0.68rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 6px 10px;
+            border-radius: 8px;
+            color: #a5b4fc;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .action-link {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .btn-white {
+            background: #ffffff;
+            color: #030408;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.15);
+        }
+        .btn-white:hover {
+            background: #f1f5f9;
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            background: rgba(255,255,255,0.01);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            margin-top: 16px;
+            font-weight: 600;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .back-btn:hover { 
+            color: #fff; 
+            transform: translateX(-3px);
+        }
+
+        /* --- EXTERNAL SOCIAL CHANNELS FEED --- */
+        .channel-section {
+            margin-top: 36px;
+        }
+
+        .channel-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .channel-link {
+            display: block;
+            text-align: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+            transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .channel-link:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .contact-highlight {
+            border-color: rgba(255, 170, 0, 0.15) !important;
+            color: var(--neon-amber);
+            background: rgba(255, 170, 0, 0.02);
+            font-weight: 700;
+        }
+        .contact-highlight:hover {
+            background: rgba(255, 170, 0, 0.05);
+            border-color: rgba(255, 170, 0, 0.3) !important;
+            box-shadow: 0 5px 20px rgba(255, 170, 0, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 45px;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.12);
+            letter-spacing: 0.5px;
+        }
+
+        /* --- ENGINE PHYSICS ANIMATIONS --- */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+        
+        @keyframes pulse-glow {
+            0% { filter: drop-shadow(0 0 5px rgba(99,102,241,0.2)); }
+            100% { filter: drop-shadow(0 0 20px rgba(168,85,247,0.5)); }
+        }
+
+        @keyframes text-blink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @keyframes floating-avatar {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(1.5deg); }
+        }
+
+        @keyframes gradient-move {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shine {
+            100% { left: 150%; }
+        }
+
+        @keyframes grid-drift {
+            0% { background-position: 0 0; }
+            100% { background-position: 30px 60px; }
+        }
+
+        @keyframes element-slide-up {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: rgba(0, 245, 118, 0.2); }
+            100% { border-color: rgba(0, 245, 118, 0.6); }
+        }
+
+        @keyframes gate-pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Space Background Layer Component -->
+    <div class="animated-bg"></div>
+
+    <!-- Dynamic Premium Loader Layer -->
+    <div id="global-loader">
+        <div class="loader-brand">𝐅𝐱</div>
+        <div class="spinner-box">
+            <div class="spinner-outer"></div>
+            <div class="spinner-inner"></div>
+        </div>
+        <div class="loader-text">Loading Safe Regedit</div>
+    </div>
+
+    <div class="container">
+
+        <!-- ================= NEW KEY LOGIN SCREEN GATING SYSTEM ================= -->
+        <div id="login-page" class="page">
+            <header>
+                <div class="avatar-container">
+                    <div class="avatar-ring"></div>
+                    <img src="https://cdn.phototourl.com/free/2026-07-18-a99215be-41cf-4b9c-9c91-3a5ee7cfd240.jpg" alt="Profile" class="profile-avatar">
+                </div>
+                <h1>VIP ACCESS PORTAL 🔐</h1>
+                <div class="creator-badge">By 𝐅𝐳' 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬 🇳🇬 𓃲</div>
+            </header>
+
+            <div class="instruction">🔴 STEP 1: YOU MUST JOIN THE OFFICIAL CHANNEL TO SYSTEMATICALLY UNLOCK KEY TYPING!</div>
+
+            <!-- BUTTON MODIFIED HERE WITH FORCE STYLES -->
+            <button id="auth-join-btn" class="task-btn animated-element active-task" style="opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; transform: none !important; animation: none !important;" onclick="handleAuthJoinChannel()">
+                1️⃣ JOIN CHANNEL TO UNLOCK KEY INPUT
+            </button>
+
+            <!-- Protected Input Box Section -->
+            <div id="key-input-container" class="key-input-wrapper" style="text-align: center;">
+                <input type="text" id="login-key" class="premium-input" placeholder="ENTER ACCESS KEY HERE" autocomplete="off" disabled>
+                
+                <a href="https://whatsapp.com/channel/0029VbD11EtAYlUQxZMuK045" target="_blank" id="get-key-link" class="btn-get-key" style="pointer-events: none; opacity: 0.5;">
+                    🔑 GET LOGIN KEY HERE
+                </a>
+
+                <button id="submit-key-btn" class="task-btn animated-element" style="margin-top: 20px; border-color: var(--primary);" onclick="verifyAccessKey()" disabled>
+                    VERIFY KEY & ACCESS PORTAL ➡️
+                </button>
+            </div>
+        </div>
+
+
+        <!-- ================= VERIFICATION HUB GATEWAY ================= -->
+        <div id="gate-page" class="page">
+            <header>
+                <div class="avatar-container">
+                    <div class="avatar-ring"></div>
+                    <img src="https://cdn.phototourl.com/free/2026-07-18-a99215be-41cf-4b9c-9c91-3a5ee7cfd240.jpg" alt="Profile" class="profile-avatar">
+                </div>
+                <h1>SAFE VIP REGEDIT FILE  📲⚙️</h1>
+                <div class="creator-badge">By 𝐅𝐳' 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬 🇳🇬 𓃲</div>
+                <div class="thanks-badge">🎉 Thank You For 5K Followers! ❤️</div>
+            </header>
+
+            <!-- Progress Tracker -->
+            <div class="progress-box">
+                <div class="progress-text">
+                    <span>Unlock Status</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="progress-bar" class="progress-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="instruction">⚠️ COMPLETE THE FINAL STEP CAREFULLY TO UNLOCK THE DOWNLOADS!</div>
+
+            <button id="share-btn" class="task-btn animated-element active-task" onclick="handleShare()">
+                2️⃣ SHARE TO WHATSAPP GROUPS (<span id="share-count">0</span>/5)
+            </button>
+
+            <button id="download-gate-btn" class="task-btn animated-element btn-premium-gate" onclick="handleGateClick()" disabled>
+                DOWNLOAD 90% REGEDIT 🎯
+            </button>
+        </div>
+
+        <!-- ================= PLATFORM SELECTION MENU ================= -->
+        <div id="home-page" class="page">
+            <header>
+                <div class="avatar-container">
+                    <div class="avatar-ring"></div>
+                    <img src="https://cdn.phototourl.com/free/2026-07-18-a99215be-41cf-4b9c-9c91-3a5ee7cfd240.jpg" alt="Profile" class="profile-avatar">
+                </div>
+                <h1>SAFE VIP REGEDIT FILE  📲⚙️</h1>
+                <div class="creator-badge">By 𝐅𝐳' 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬 🇳🇬 𓃲</div>
+            </header>
+
+            <div class="instruction" style="color: var(--text-muted); background: transparent; border: none;">Select your platform matrix:</div>
+
+            <button class="task-btn animated-element" style="border-color: rgba(99,102,241,0.2)" onclick="navigateTo('android-page')">
+                ANDROID 90% REGEDIT HS 📲🎯
+            </button>
+            
+            <button class="task-btn animated-element" style="border-color: rgba(168,85,247,0.2)" onclick="navigateTo('ios-page')">
+                IOS 90% AIM NET HS 📲⚙️
+            </button>
+        </div>
+
+        <!-- ================= ANDROID DOWNLOAD MATRIX ================= -->
+        <div id="android-page" class="page">
+            <div class="card">
+                <h2>ANDROID 90% REGEDIT HS 📲🎯</h2>
+                <div class="badge-grid">
+                    <span class="v-badge">Anti-Ban</span>
+                    <span class="v-badge">Auto-Aim</span>
+                    <span class="v-badge">Safe 100%</span>
+                </div>
+                
+                <a href="https://www.mediafire.com/file/39145qo9135r8g4/90%2525_regedit_headshot%25F0%259F%258E%25AF_%25C2%25A9Fearless.zip/file" target="_blank" class="action-link animated-element btn-white">Download Regedit File</a>
+                <a href="https://www.mediafire.com/file/flpk6xpiucaecr5/Android_Regedit%25F0%259F%258E%25AFSETUP.mp4/file" target="_blank" class="action-link animated-element btn-outline">Watch Setup Video</a>
+                
+                <a href="javascript:void(0)" class="back-btn animated-element" onclick="navigateTo('home-page')">← Back to Options</a>
+            </div>
+        </div>
+
+        <!-- ================= IOS DOWNLOAD MATRIX ================= -->
+        <div id="ios-page" class="page">
+            <div class="card">
+                <h2>IOS 90% AIM NET HS 📲⚙️</h2>
+                <div class="badge-grid">
+                    <span class="v-badge">Aim Net</span>
+                    <span class="v-badge">DNS Sync</span>
+                    <span class="v-badge">Main ID</span>
+                </div>
+                
+                <a href="https://www.mediafire.com/file/ltv02brqh8u9b19/90%2525_DNS_AIMNET%25F0%259F%258E%25AF.zip/file" target="_blank" class="action-link animated-element btn-white">Download Aimnet Link</a>
+                <a href="https://www.mediafire.com/file/fnf1vvmpm4pn5ag/AIMNET+SETUP+ios+⚙️📲.mp4/file" target="_blank" class="action-link animated-element btn-outline">Watch Setup Video</a>
+                
+                <a href="javascript:void(0)" class="back-btn animated-element" onclick="navigateTo('home-page')">← Back to Options</a>
+            </div>
+        </div>
+
+        <!-- WHATSAPP SUPPORT CHANNELS EXTRAS -->
+        <div class="channel-section">
+            <div class="channel-title">Channels & Support</div>
+            
+            <a href="https://whatsapp.com/channel/0029VbDIkfX3GJOotlw08M3E" target="_blank" class="channel-link">
+                Main Channel Link
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbD11EtAYlUQxZMuK045" target="_blank" class="channel-link">
+                Backup Channel Link
+            </a>
+            <a href="https://wa.me/2349137895828?text=Hello%20Fearless,%20I%20need%20help%20with%20VIP%20Regedit" target="_blank" class="channel-link contact-highlight">
+                👑 CONTACT OWNER
+            </a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 By 𝐅𝐳' 𝐅𝐞𝐚𝐫𝐥𝐞𝐬𝐬 🇳🇬 𓃲
+        </div>
+    </div>
+
+    <!-- Smart Content Locker Script Matrix -->
+    <script>
+        let taskProgress = 0;
+        let authChannelJoined = false;
+        let sharesCompleted = 0;
+        const SECRET_KEY = "FEARLESS-REGEDIT";
+
+        const promotionTemplate = `*🎯VIP REGEDIT 90% HEADSHOT FILE (100% safe for main id)⚙️*
+
+*Sensitivity Site :* _https://regeditxfearless.netlify.app_
+
+*Join Fearless Xit Official Channel For Daily Regedit and Files 👇🫶*
+_https://whatsapp.com/channel/0029VbDIkfX3GJOotlw08M3E_`;
+
+        function updateProgressUI() {
+            document.getElementById("progress-bar").style.width = taskProgress + "%";
+            document.getElementById("progress-percent").innerText = taskProgress + "%";
+        }
+
+        /* Access Authentication Controls */
+        function handleAuthJoinChannel() {
+            window.open("https://whatsapp.com/channel/0029VbDIkfX3GJOotlw08M3E", "_blank");
+            authChannelJoined = true;
+            
+            const btn = document.getElementById("auth-join-btn");
+            btn.classList.remove("active-task");
+            btn.style.background = "rgba(255,255,255,0.01)";
+            btn.style.color = "var(--text-muted)";
+            btn.innerText = "✅ MAIN CHANNEL VISITED";
+            btn.disabled = true;
+
+            // Unlock standard password elements natively
+            document.getElementById("key-input-container").classList.add("active");
+            document.getElementById("login-key").removeAttribute("disabled");
+            document.getElementById("submit-key-btn").removeAttribute("disabled");
+            
+            // Activate structural link underneath to source key
+            const getLink = document.getElementById("get-key-link");
+            getLink.style.opacity = "1";
+            getLink.style.pointerEvents = "auto";
+        }
+
+        function verifyAccessKey() {
+            const enteredKey = document.getElementById("login-key").value.trim();
+            if (enteredKey === SECRET_KEY) {
+                taskProgress = 30; // Set starting progress value after login
+                navigateTo('gate-page');
+                setTimeout(() => { updateProgressUI(); }, 400);
+            } else {
+                alert("❌ INVALID LOGIN KEY! Please visit the backup channel to fetch the correct key.");
+            }
+        }
+
+        function handleShare() {
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(promotionTemplate)}`, "_blank");
+            
+            sharesCompleted++;
+            if (sharesCompleted > 5) sharesCompleted = 5;
+            
+            document.getElementById("share-count").innerText = sharesCompleted;
+            
+            taskProgress = 30 + (sharesCompleted * 14); 
+            if (taskProgress > 100) taskProgress = 100;
+            updateProgressUI();
+
+            if (sharesCompleted >= 5) {
+                const shareBtn = document.getElementById("share-btn");
+                shareBtn.classList.remove("active-task");
+                shareBtn.style.background = "rgba(255,255,255,0.01)";
+                shareBtn.style.color = "var(--text-muted)";
+                shareBtn.innerText = "✅ GROUPS SHARED SUCCESSFULLY";
+                shareBtn.disabled = true;
+
+                const gateBtn = document.getElementById("download-gate-btn");
+                gateBtn.removeAttribute("disabled");
+                gateBtn.classList.add("unlocked");
+                
+                taskProgress = 100;
+                updateProgressUI();
+            }
+        }
+
+        function handleGateClick() {
+            if (sharesCompleted >= 5) {
+                navigateTo('home-page');
+            } else {
+                alert("Please complete all required steps first!");
+            }
+        }
+
+        function navigateTo(pageId) {
+            const activePage = document.querySelector('.page.active');
+            if (activePage) {
+                activePage.style.opacity = '0';
+                activePage.style.transform = 'scale(0.96) translateY(-10px)';
+                setTimeout(() => {
+                    activePage.classList.remove('active');
+                    const nextPage = document.getElementById(pageId);
+                    nextPage.classList.add('active');
+                    setTimeout(() => {
+                        nextPage.style.opacity = '1';
+                        nextPage.style.transform = 'scale(1) translateY(0)';
+                    }, 50);
+                }, 300);
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Loader initialization
+        window.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                const loader = document.getElementById('global-loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                }
+                
+                const initial = document.getElementById('login-page');
+                if (initial) {
+                    initial.classList.add('active');
+                    setTimeout(() => {
+                        initial.style.opacity = '1';
+                        initial.style.transform = 'scale(1) translateY(0)';
+                    }, 50);
+                }
+            }, 2200);
+        });
+    </script>
+</body>
+</html>
